@@ -1,34 +1,46 @@
 const gulp = require('gulp');
-const concat = require('gulp-concat');
+const inject = require('gulp-inject');
 const browserSync = require('browser-sync').create();
 
-let watch = function() {
+let paths = {
+    src: 'src/**/*',
+    srcHTML: 'src/**/*.html',
+    srcCSS: 'src/**/*.css',
+    srcJS: 'src/**/*.js',
+    dist: 'dist',
+    distIndex: 'dist/index.html',
+    distCSS: 'dist/**/*.css',
+    distJS: 'dist/**/*.js'
+};
+
+gulp.task('html', function () {
+    return gulp.src(paths.srcHTML).pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('css', function () {
+    return gulp.src(paths.srcCSS).pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('js', function () {
+    return gulp.src(paths.srcJS).pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('copy', gulp.series('html', 'css', 'js'));
+
+gulp.task('inject', gulp.series('copy', function () {
+    let target = gulp.src(paths.distIndex);
+    let sources = gulp.src([paths.distJS, paths.distCSS], {read: false});
+    return target.pipe(inject(sources, { relative:true }))
+        .pipe(gulp.dest(paths.dist))
+        .pipe(browserSync.stream());
+}));
+
+gulp.task('watch', function() {
     browserSync.init({
-        server: './dist'
+        server: paths.dist
     });
-    gulp.watch('src/**/*', gulp.series('build'));
-    gulp.watch('dist/*').on('change', browserSync.reload);
-};
+    gulp.watch(paths.src, gulp.series('inject'));
+    gulp.watch(paths.dist).on('change', browserSync.reload);
+});
 
-let build = function () {
-    copy();
-    return gulp.src('src/js/*.js')
-        .pipe(concat('scripts.js'))
-        .pipe(gulp.dest('./dist'))
-        .pipe(browserSync.stream());
-};
-
-let copy = function () {
-    return gulp
-        .src(['src/index.html', 'src/css/styles.css'])
-        .pipe(gulp.dest('dist'))
-        .pipe(browserSync.stream());
-};
-
-let start = function () {
-    build();
-    watch();
-};
-
-gulp.task('build', function() { return build(); });
-gulp.task('start', function() { return start(); });
+gulp.task('start', gulp.series('inject', 'watch'));
