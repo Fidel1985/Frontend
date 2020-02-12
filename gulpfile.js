@@ -39,8 +39,8 @@ gulp.task('watch', function() {
     browserSync.init({
         server: paths.dist
     });
-    gulp.watch(paths.src, gulp.series('inject'));
+    gulp.watch(paths.src, gulp.series('copy'));
     gulp.watch(paths.dist).on('change', browserSync.reload);
 });
 
-gulp.task('start', gulp.series('inject', 'watch'));
+gulp.task('start', gulp.series('copy', 'watch'));

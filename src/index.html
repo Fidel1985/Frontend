@@ -5,7 +5,13 @@
     <!-- endinject -->
 </head>
 <body>
-<div class="awesome">This is awesome!</div>    <!-- inject:js -->
+<script data-main="config" src="js/libs/require.js"></script>
+<script>require(['config'], function () {
+        require(['script']);
+});
+</script>
+<div class="awesome">This is awesome!</div>
+<!-- inject:js -->
 <!-- endinject -->
 </body>
 </html>
