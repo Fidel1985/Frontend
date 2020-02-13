@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const inject = require('gulp-inject');
 const browserSync = require('browser-sync').create();
 
 let paths = {
@@ -26,14 +25,6 @@ gulp.task('js', function () {
 });
 
 gulp.task('copy', gulp.series('html', 'css', 'js'));
-
-gulp.task('inject', gulp.series('copy', function () {
-    let target = gulp.src(paths.distIndex);
-    let sources = gulp.src([paths.distJS, paths.distCSS], {read: false});
-    return target.pipe(inject(sources, { relative:true }))
-        .pipe(gulp.dest(paths.dist))
-        .pipe(browserSync.stream());
-}));
 
 gulp.task('watch', function() {
     browserSync.init({

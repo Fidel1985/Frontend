@@ -1,8 +1,8 @@
 requirejs.config({
-    baseUrl: 'js',
+    baseUrl: './',
     paths: {
-        jquery: 'libs/_jquery-3.4.1',
-        underscore: 'libs/_underscore',
-        backbone: 'libs/backbone',
+        jquery: 'lib/jquery-3.4.1',
+        underscore: 'lib/underscore',
+        backbone: 'lib/backbone',
     }
 });
