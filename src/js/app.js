@@ -1,4 +1,4 @@
-define(['backbone', 'marionette', 'js/view'],
+define(['backbone', 'backbone.marionette', 'js/view'],
     function (Backbone, Marionette, View) {
         return Marionette.Application.extend({
             region: '#app',
