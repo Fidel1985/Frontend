@@ -8,8 +8,6 @@ define(
             region: '#app',
 
             onStart: function () {
-                this.showView(new CoreView());
-
                 if (Backbone.history) {
                     Backbone.history.start();
                 }
