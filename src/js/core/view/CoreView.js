@@ -11,25 +11,27 @@ define(
             {
                 username : 'Andriy',
                 password : 'qwerty'
+            },
+            {
+                username : 'admin',
+                password : 'admin'
             }
         ];
 
         return Marionette.View.extend({
             template: _.template(template),
-            //model: UserModel,
             _modelBinder: undefined,
 
             initialize: function() {
                 this._modelBinder = new ModelBinder();
-                //this.model = new UserModel();
+                this.model = new UserModel();
             },
             close: function () {
                 this._modelBinder.unbind();
             },
-            // render: function() {
-            //     //this._modelBinder.bind(this.model, this.el);
-            //     return this;
-            //  },
+            onRender() {
+                 this._modelBinder.bind(this.model, this.el);
+            },
 
             events: {
                 'click #login_button': login
@@ -42,8 +44,24 @@ define(
 
         function login(e) {
             e.preventDefault();
-            console.log(this.ui.username.val());
-            console.log(this.ui.password.val());
-            //console.log(this.model.attributes);
+            //let self = this;
+            console.log("login function");
+            console.log('username: ' + this.model.attributes.username + ', password: ' + this.model.attributes.password);
+            /*console.log(validCredits.some(function (entry) {
+                    return entry.username === self.model.attributes.username && entry.password === self.model.attributes.password
+                }
+            ), self);*/
+            if (isCredentialsValid(this.model)) {
+                Backbone.history.navigate('/dashboard', true);
+            } else {
+                alert('invalid credentials');
+            }
+        }
+
+        function isCredentialsValid(model) {
+            return validCredits.some(function (entry) {
+                    return entry.username === model.attributes.username && entry.password === model.attributes.password
+                }
+            );
         }
     });
