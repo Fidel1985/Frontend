@@ -5,7 +5,7 @@ define(
         'js/core/view/CoreView'
     ], function (Backbone, Marionette, CoreView) {
         return Marionette.Application.extend({
-            region: '#app',
+            region: '[data-view]',
 
             onStart: function () {
                 if (Backbone.history) {
