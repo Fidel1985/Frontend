@@ -11,7 +11,7 @@ define(
 
             initialize: function() {
                 console.log('dashboard');
-                console.log(globalUser.attributes);
+                console.log(this.model.attributes);
                 //this.model = app.requ
             }
         });

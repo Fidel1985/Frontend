@@ -25,7 +25,7 @@ define(
 
             initialize: function() {
                 this._modelBinder = new ModelBinder();
-                this.model = new UserModel();
+                //this.model = new UserModel();
                 console.log(globalUser);
             },
             onDestroy: function () {
