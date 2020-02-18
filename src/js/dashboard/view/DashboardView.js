@@ -2,17 +2,9 @@ define(
     [
         'text!js/dashboard/template/DashboardTemplate.html',
         'underscore',
-        'backbone.marionette',
-        'js/globalUser',
-        'js/app'
-    ], function (template, _, Marionette, globalUser, app) {
+        'backbone.marionette'
+    ], function (template, _, Marionette) {
         return Marionette.View.extend({
             template: _.template(template),
-
-            initialize: function() {
-                console.log('dashboard');
-                console.log(this.model.attributes);
-                //this.model = app.requ
-            }
         });
     });

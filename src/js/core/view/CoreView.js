@@ -4,9 +4,8 @@ define(
         'underscore',
         'backbone.marionette',
         'model.binder',
-        'js/core/model/UserModel',
-        'js/globalUser'
-    ], function (template, _, Marionette, ModelBinder, UserModel, globalUser) {
+        'js/core/model/UserModel'
+    ], function (template, _, Marionette, ModelBinder, UserModel) {
 
         let validCredits = [
             {
@@ -25,8 +24,7 @@ define(
 
             initialize: function() {
                 this._modelBinder = new ModelBinder();
-                //this.model = new UserModel();
-                console.log(globalUser);
+                this.model = new UserModel();
             },
             onDestroy: function () {
                 this._modelBinder.unbind();
@@ -48,9 +46,7 @@ define(
             e.preventDefault();
             console.log('username: ' + this.model.attributes.username + ', password: ' + this.model.attributes.password);
             if (isCredentialsValid(this.model)) {
-                globalUser = this.model;
-                console.log('assigned');
-                console.log(globalUser);
+                LOGGED_USER = this.model.attributes.username;
                 Backbone.history.navigate('/dashboard', true);
             } else {
                 alert('invalid credentials');
