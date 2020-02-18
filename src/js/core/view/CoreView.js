@@ -5,8 +5,9 @@ define(
         'backbone.marionette',
         'model.binder',
         'backbone.validation',
-        'js/core/model/UserModel'
-    ], function (template, _, Marionette, ModelBinder, Validation, UserModel) {
+        'js/core/model/UserModel',
+        'js/global'
+    ], function (template, _, Marionette, ModelBinder, Validation, UserModel, global) {
 
         let validCredits = [
             {
@@ -61,6 +62,7 @@ define(
             login: function (e) {
                 e.preventDefault();
                 console.log('username: ' + this.model.attributes.username + ', password: ' + this.model.attributes.password);
+                global.setCurrentUser(this.model);
                 if (isCredentialsValid(this.model)) {
                     LOGGED_USER = this.model.attributes.username;
                     Backbone.history.navigate('/dashboard', true);
