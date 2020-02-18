@@ -33,30 +33,19 @@ define(
             },
             onRender() {
                 this._modelBinder.bind(this.model, this.el);
-                //Backbone.Validation.bind(this);
-
                 Backbone.Validation.bind(this, {
                     forceUpdate: true,
-
                     valid: function (view, attr, selector) {
                         let $el = view.$('[name=' + attr + ']'),
-                            $group = $el.closest('.form-label-group');
-
+                            $group = $el.closest('.form-group');
                         $group.removeClass('has-error');
-                        $('.help-block', $group.parent())
-                            .html('')
-                            .addClass('hidden')
-                            .removeClass('has-error');
+                        $group.find('.help-block').html('').addClass('hidden');
                     },
                     invalid: function (view, attr, error, selector) {
                         let $el = view.$('[name=' + attr + ']'),
-                            $group = $el.closest('.form-label-group');
-
+                            $group = $el.closest('.form-group');
                         $group.addClass('has-error');
-                        $('.help-block', $group.parent())
-                            .html(error)
-                            .removeClass('hidden')
-                            .addClass('has-error');
+                        $group.find('.help-block').html(error).removeClass('hidden');
                     }
                 });
             },
@@ -72,7 +61,6 @@ define(
             login: function (e) {
                 e.preventDefault();
                 console.log('username: ' + this.model.attributes.username + ', password: ' + this.model.attributes.password);
-                console.log(this.model.isValid(true));
                 if (isCredentialsValid(this.model)) {
                     LOGGED_USER = this.model.attributes.username;
                     Backbone.history.navigate('/dashboard', true);
