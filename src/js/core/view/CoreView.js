@@ -62,9 +62,8 @@ define(
             login: function (e) {
                 e.preventDefault();
                 console.log('username: ' + this.model.attributes.username + ', password: ' + this.model.attributes.password);
-                global.setCurrentUser(this.model);
                 if (isCredentialsValid(this.model)) {
-                    LOGGED_USER = this.model.attributes.username;
+                    global.setCurrentUser(this.model);
                     Backbone.history.navigate('/dashboard', true);
                 } else {
                     alert('invalid credentials');

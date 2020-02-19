@@ -10,7 +10,14 @@ define(
 
             initialize: function() {
                 console.log('dashboard initializer');
-                console.log(global.getCurrentUser().attributes);
+                //this.model = global.getCurrentUser();
+                //this._modelBinder = new ModelBinder();
+            },
+
+            onRender: function () {
+                //console.log('onRender');
+                //this.username = global.getCurrentUser().attributes.username;
+                //console.log(this.username);
             }
         });
     });
