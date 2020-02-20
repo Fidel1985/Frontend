@@ -32,7 +32,7 @@ define(
                 this._modelBinder.unbind();
                 Backbone.Validation.unbind(this);
             },
-            onRender() {
+            onRender: function() {
                 this._modelBinder.bind(this.model, this.el);
                 Backbone.Validation.bind(this, {
                     forceUpdate: true,

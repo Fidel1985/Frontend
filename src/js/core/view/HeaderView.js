@@ -13,7 +13,7 @@ define(
                 this._modelBinder = new ModelBinder();
                 this.model = global.getCurrentUser();
                 Backbone.on('userLogged', () => {
-                    this.model.set('username', global.getCurrentUser().get('username'));
+                    this.model.set(global.getCurrentUser().toJSON());
                 });
             },
             onDestroy: function () {
