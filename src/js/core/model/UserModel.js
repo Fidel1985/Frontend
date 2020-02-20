@@ -4,7 +4,7 @@ define(
     ], function (Backbone) {
         return Backbone.Model.extend({
             defaults: {
-                username: 'EMPTY_USER',
+                username: '',
                 password: ''
             },
 

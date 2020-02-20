@@ -10,21 +10,17 @@ define(
             template: _.template(template),
 
             initialize: function() {
-                console.log('header view initialize');
                 this._modelBinder = new ModelBinder();
                 this.model = global.getCurrentUser();
-                //this.listenTo(this.model, 'change', console.log('header view handler triggered'));
+                Backbone.on('userLogged', () => {
+                    this.model.set('username', global.getCurrentUser().get('username'));
+                });
             },
             onDestroy: function () {
                 this._modelBinder.unbind();
             },
-            onRender() {
+            onRender: function () {
                 this._modelBinder.bind(this.model, this.el);
-                console.log('header view onRender');
-                console.log(global.getCurrentUser().attributes.username);
             },
-            // myHandler: function () {
-            //     console.log('header view handler triggered');
-            // }
         });
     });

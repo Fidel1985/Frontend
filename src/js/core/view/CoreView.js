@@ -49,6 +49,12 @@ define(
                         $group.find('.help-block').html(error).removeClass('hidden');
                     }
                 });
+                this.model.on('change', function () {
+                    let attrs = _.pick(this.attributes, _.keys(this.changed));
+                    if (this.validate) {
+                        this.validate(attrs);
+                    }
+                });
             },
 
             events: {
@@ -64,6 +70,7 @@ define(
                 console.log('username: ' + this.model.attributes.username + ', password: ' + this.model.attributes.password);
                 if (isCredentialsValid(this.model)) {
                     global.setCurrentUser(this.model);
+                    Backbone.trigger('userLogged');
                     Backbone.history.navigate('/dashboard', true);
                 } else {
                     alert('invalid credentials');
@@ -78,22 +85,3 @@ define(
             );
         }
     });
-
-// _.extend(Backbone.Validation.callbacks, {
-//     valid: function (view, attr, selector) {
-//         console.log('valid');
-//         var $el = view.$('[name=' + attr + ']'),
-//             $group = $el.closest('.form-label-group');
-//
-//         $group.removeClass('has-error');
-//         $group.find('.help-block').html('').addClass('hidden');
-//     },
-//     invalid: function (view, attr, error, selector) {
-//         console.log('invalid');
-//         var $el = view.$('[name=' + attr + ']'),
-//             $group = $el.closest('.form-label-group');
-//
-//         $group.addClass('has-error');
-//         $group.find('.help-block').html(error).removeClass('hidden');
-//     }
-// });
