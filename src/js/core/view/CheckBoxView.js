@@ -9,15 +9,15 @@ define(
         return Marionette.View.extend({
             template: _.template(template),
 
-            ui: {
-                checkboxChecked: '#checkboxChecked'
-            },
+            // ui: {
+            //     checkboxChecked: '#checkboxChecked'
+            // },
             // events: {
             //     'click @ui.checkboxChecked': mapLabel,
             // },
-            modelEvents: {
-                'change:checkboxChecked': mapLabel,
-            },
+            // modelEvents: {
+            //     'change:checkboxChecked': mapLabel,
+            // },
 
             initialize: function() {
                 this._modelBinder = new ModelBinder();
@@ -31,12 +31,12 @@ define(
             },
         });
 
-        function mapLabel() {
-            console.log(this.model.attributes);
-            if (this.model.get('checkboxChecked') === true) {
-                this.model.set('checkboxText', 'yes')
-            } else {
-                this.model.set('checkboxText', 'no')
-            }
-        }
+        // function mapLabel() {
+        //     console.log(this.model.attributes);
+        //     if (this.model.get('checkboxChecked') === true) {
+        //         this.model.set('checkboxText', 'yes')
+        //     } else {
+        //         this.model.set('checkboxText', 'no')
+        //     }
+        // }
     });
