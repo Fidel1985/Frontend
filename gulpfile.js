@@ -7,10 +7,12 @@ let paths = {
     srcHTML: 'src/**/*.html',
     srcCSS: 'src/**/*.css',
     srcJS: 'src/**/*.js',
+    srcFONTS: 'src/fonts/*.*',
     dist: 'dist',
     distIndex: 'dist/index.html',
     distCSS: 'dist/**/*.css',
-    distJS: 'dist/**/*.js'
+    distJS: 'dist/**/*.js',
+    distFONTS: 'dist/fonts'
 };
 
 gulp.task('html', function () {
@@ -25,7 +27,11 @@ gulp.task('js', function () {
     return gulp.src(paths.srcJS).pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('copy', gulp.series('html', 'css', 'js'));
+gulp.task('fonts', function () {
+    return gulp.src(paths.srcFONTS).pipe(gulp.dest(paths.distFONTS));
+});
+
+gulp.task('copy', gulp.series('html', 'css', 'js', 'fonts'));
 
 gulp.task('inject', gulp.series('copy', function () {
     let target = gulp.src(paths.distIndex);
