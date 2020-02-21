@@ -13,13 +13,17 @@ define(
             },
 
             updateAttributes: function() {
-                console.log('updateAttributes fired');
-                if(this.get('checkboxChecked') === true) {
-                    this.set('checkboxText', 'yes');
-                } else {
-                    this.set('checkboxText', 'no');
-                }
+                // console.log('updateAttributes fired');
+                // if(this.get('checkboxChecked') === true) {
+                //     this.set('checkboxText', 'yes');
+                // } else {
+                //     this.set('checkboxText', 'no');
+                // }
                 console.log(this.attributes);
+            },
+
+            modifyRepresentation: function () {
+                return "!!!!!!!!!!!!!!!!!!!!";
             }
         })
     });
