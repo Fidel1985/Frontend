@@ -4,26 +4,19 @@ define(
     ], function (Backbone) {
         return Backbone.Model.extend({
             defaults: {
-                checkboxChecked: false,
-                checkboxText: 'no'
+                //checkboxChecked: false,
+                uiLibrary: 'bootstrap4',
+                value: '16:52',
+                //modal: false
             },
 
             initialize: function() {
-                this.on('change:checkboxChecked', this.updateAttributes, this);
+                this.on('change', this.showAttributes, this);
             },
 
-            updateAttributes: function() {
-                // console.log('updateAttributes fired');
-                // if(this.get('checkboxChecked') === true) {
-                //     this.set('checkboxText', 'yes');
-                // } else {
-                //     this.set('checkboxText', 'no');
-                // }
+            showAttributes: function() {
                 console.log(this.attributes);
             },
 
-            modifyRepresentation: function () {
-                return "!!!!!!!!!!!!!!!!!!!!";
-            }
         })
     });
