@@ -19,22 +19,40 @@ define(
             },
 
             ui: {
-                'timepicker': '#timepicker'
+                'timepicker': '#timepicker',
+                //'customButton': '.btn-outline-secondary',
+                'customButton': '.gj-picker-bootstrap',
             },
 
             events: {
-                'click @ui.timepicker': 'clickTimepicker',
+                //'click @ui.timepicker': 'clickTimepicker',
+                'click @ui.customButton': 'pressedButton'
             },
 
-            bindings: {
-                value: {selector: '#timepicker', converter: timeConverter}
-            },
+            // bindings: {
+            //     timeValue: {selector: '#timepicker', converter: timeConverter},
+            //     //timeValue: {selector: '#timepicker'}
+            // },
 
             onRender: function () {
-                this.$('#timepicker').timepicker(this.model.attributes);
+                console.log('CheckBoxView');
+                //this.$('#timepicker').timepicker(this.model.attributes);
+                this.$('#timepicker').timepicker({
+                    change: () => {
+                        this.pressedButton();
+                    }
+                });
+                //this.$('#timepicker').timepicker().
+                // on('change', () => {
+                //     this.pressedButton();
+                // });
             },
-            clickTimepicker: function () {
-                console.log('timepicker clicked');
+            pressedButton: function() {
+                console.log('pressedButton');
+                //console.log(this.$('#timepicker').val());
+                //this.$('#timepicker').trigger('change');
+                //this.model.trigger('change');
+                //this.model.set('timepicker', this.$('#timepicker').val());
             }
         });
 

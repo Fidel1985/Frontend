@@ -9,7 +9,9 @@ define([
             this._modelBinder = new ModelBinder();
         },
         onRender: function () {
-            this._modelBinder.bind(this.view.model, this.view.el, this.view.bindings);
+            //this._modelBinder.bind(this.view.model, this.view.el, this.view.bindings);
+            console.log(this.view.el);
+            this._modelBinder.bind(this.view.model, this.view.el);
         },
         onDestroy: function () {
             this._modelBinder.unbind();
