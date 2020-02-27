@@ -7,8 +7,12 @@ define(
         'js/core/view/CoreView',
         'js/core/view/CheckBoxView',
         'js/dashboard/view/DashboardView',
-        'js/global'
-    ], function (Marionette, AppLayoutView, HeaderView, FooterView, CoreView, CheckBoxView, DashboardView, global) {
+        'js/global',
+        'js/core/model/UserModel',
+        'js/core/collection/UserCollection',
+        'js/core/view/UserCollectionView',
+    ], function (Marionette, AppLayoutView, HeaderView, FooterView, CoreView, CheckBoxView, DashboardView, global,
+                 UserModel, UserCollection, UserCollectionView) {
         return Marionette.MnObject.extend({
             initialize : function(options) {
                 this.app = options.app;
@@ -20,7 +24,13 @@ define(
 
             resolveMainPage: function () {
                 //this.layout.showChildView('mainRegion', new CoreView());
-                this.layout.showChildView('mainRegion', new CheckBoxView());
+                //this.layout.showChildView('mainRegion', new CheckBoxView());
+                let users = [{username: 'Vasyl', password: 'difficult password'},
+                            {username: 'Petro', password: 'second password'},
+                            {username: 'Ivan', password: 'asd$_sdas!'}];
+                let userCollection = new UserCollection(users);
+                let usersView = new UserCollectionView({collection : userCollection});
+                this.layout.showChildView('mainRegion', usersView);
             },
 
             dashboard: function () {
