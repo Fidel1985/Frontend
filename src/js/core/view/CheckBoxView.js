@@ -20,46 +20,24 @@ define(
 
             ui: {
                 'timepicker': '#timepicker',
-                //'customButton': '.btn-outline-secondary',
-                'customButton': '.gj-picker-bootstrap',
             },
 
-            events: {
-                //'click @ui.timepicker': 'clickTimepicker',
-                'click @ui.customButton': 'pressedButton'
+            bindings: {
+                time: {selector: '#timepicker', converter: timeConverter},
             },
-
-            // bindings: {
-            //     timeValue: {selector: '#timepicker', converter: timeConverter},
-            //     //timeValue: {selector: '#timepicker'}
-            // },
 
             onRender: function () {
-                console.log('CheckBoxView');
-                //this.$('#timepicker').timepicker(this.model.attributes);
-                this.$('#timepicker').timepicker({
-                    change: () => {
-                        this.pressedButton();
-                    }
+                this.$('#timepicker').timepicker(this.model.attributes)
+                    .on('change', () => {
+                    this.model.set('time', this.$('#timepicker').val());
                 });
-                //this.$('#timepicker').timepicker().
-                // on('change', () => {
-                //     this.pressedButton();
-                // });
             },
-            pressedButton: function() {
-                console.log('pressedButton');
-                //console.log(this.$('#timepicker').val());
-                //this.$('#timepicker').trigger('change');
-                //this.model.trigger('change');
-                //this.model.set('timepicker', this.$('#timepicker').val());
-            }
         });
 
         function timeConverter(direction, value, attributeName) {
             let date = new Date();
             let time = value.split(':');
-            let result = value;
+            let result;
             if (direction === 'ViewToModel') {
                 date.setHours(time[0], time[1]);
                 result = date.getUTCHours().toString() + ':' + date.getUTCMinutes().toString();

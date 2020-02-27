@@ -4,11 +4,8 @@ define(
     ], function (Backbone) {
         return Backbone.Model.extend({
             defaults: {
-                //checkboxChecked: false,
-                //uiLibrary: 'bootstrap4',
-                value: '17:11',
-                //modal: false,
-                //timepicker: '21:37'
+                uiLibrary: 'bootstrap4',
+                time: '17:11',
             },
 
             initialize: function() {
