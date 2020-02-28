@@ -5,6 +5,21 @@ define([
 ], function (template, Marionette, UserModel) {
     return Marionette.View.extend({
         template: _.template(template),
-        tagName: "tr",
+
+        ui: {
+            'userItem': '.border',
+        },
+
+        triggers: {
+            'click @ui.userItem': 'select:item'
+        },
+
+        // events: {
+        //     "click @ui.userItem" : "clicked"
+        // },
+        //
+        // clicked: function () {
+        //     console.log(this.getUI('userItem').attr('data-id'));
+        // },
     })
 });

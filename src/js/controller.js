@@ -30,7 +30,9 @@ define(
                             {username: 'Ivan', password: 'asd$_sdas!'}];
                 let userCollection = new UserCollection(users);
                 let usersView = new UserCollectionView({collection : userCollection});
+                //let usersView2 = new UserCollectionView({collection : userCollection});
                 this.layout.showChildView('mainRegion', usersView);
+                //this.layout.showChildView('mainRegion', usersView2);
             },
 
             dashboard: function () {
