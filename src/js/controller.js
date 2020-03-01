@@ -28,11 +28,15 @@ define(
                 let users = [{username: 'Vasyl', password: 'difficult password'},
                             {username: 'Petro', password: 'second password'},
                             {username: 'Ivan', password: 'asd$_sdas!'}];
+                let users2 = [{username: 'Paul', password: 'asdaafaf'},
+                            {username: 'Mike', password: '22222222'},
+                            {username: 'Kevin', password: '33333333'}];
                 let userCollection = new UserCollection(users);
+                let userCollection2 = new UserCollection(users2);
                 let usersView = new UserCollectionView({collection : userCollection});
-                //let usersView2 = new UserCollectionView({collection : userCollection});
+                let usersView2 = new UserCollectionView({collection : userCollection2});
                 this.layout.showChildView('mainRegion', usersView);
-                //this.layout.showChildView('mainRegion', usersView2);
+                this.layout.showChildView('secondaryRegion', usersView2);
             },
 
             dashboard: function () {

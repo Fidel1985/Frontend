@@ -14,17 +14,18 @@ define([
         },
 
         initialize: function () {
-            // setTimeout(() => {
-            //     this.collection.push({username: 'Andriy', password: '!!!!!!!!!!!!!'});
-            // }, 3000);
-            this.on('prefix:render', function () {
-                console.log("CollectionView clicked");
-            })
+            Backbone.on('collectionModification', (model) => {
+                if (this.collection.contains(model)) {
+                    this.collection.remove(model);
+                } else {
+                    this.collection.add(model);
+                }
+            });
         },
 
         itemSelected(childView) {
-            console.log('View clicked ' + childView.model.id);
-            this.collection.remove(childView.model);
+            Backbone.trigger('collectionModification', childView.model);
+            //this.collection.remove(childView.model);
         },
     })
 });
