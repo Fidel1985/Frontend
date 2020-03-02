@@ -24,8 +24,14 @@ define([
         },
 
         itemSelected(childView) {
-            Backbone.trigger('collectionModification', childView.model);
+            //Backbone.trigger('collectionModification', childView.model);
             //this.collection.remove(childView.model);
+            if (childView.$el.hasClass('bg-secondary')) {
+                childView.$el.removeClass('bg-secondary');
+            } else {
+                childView.$el.addClass('bg-secondary');
+                Backbone.trigger('itemSelected', childView.model);
+            }
         },
     })
 });
