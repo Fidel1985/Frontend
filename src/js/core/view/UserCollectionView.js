@@ -6,7 +6,6 @@ define([
     return Marionette.CollectionView.extend({
         tagName: 'table',
         template: false,
-        childViewEventPrefix: 'prefix',
         childView: UserItemView,
 
         childViewEvents: {
@@ -14,23 +13,32 @@ define([
         },
 
         initialize: function () {
-            Backbone.on('collectionModification', (model) => {
-                if (this.collection.contains(model)) {
-                    this.collection.remove(model);
-                } else {
-                    this.collection.add(model);
-                }
+            Backbone.Radio.channel('userCollection').on('userCollection:change', (model) => {
+                this.modifyCollection(model);
             });
         },
 
-        itemSelected(childView) {
-            //Backbone.trigger('collectionModification', childView.model);
-            //this.collection.remove(childView.model);
-            if (childView.$el.hasClass('bg-secondary')) {
-                childView.$el.removeClass('bg-secondary');
+        modifyCollection: function (model) {
+            if (this.collection.contains(model)) {
+                this.collection.remove(model);
             } else {
-                childView.$el.addClass('bg-secondary');
-                Backbone.trigger('itemSelected', childView.model);
+                this.collection.add(model);
+            }
+            Backbone.Radio.trigger('userCollection', 'userCollection:itemSelected', undefined);
+        },
+
+        itemSelected: function (childView) {
+            this.children.each((_childView) => {
+                if (_childView === childView) {
+                    _childView.$el.toggleClass('bg-secondary');
+                } else {
+                    _childView.$el.removeClass('bg-secondary');
+                }
+            });
+            if (childView.$el.hasClass('bg-secondary')) {
+                Backbone.Radio.trigger('userCollection', 'userCollection:itemSelected', childView.model);
+            } else {
+                Backbone.Radio.trigger('userCollection', 'userCollection:itemSelected', undefined);
             }
         },
     })

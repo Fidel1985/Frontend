@@ -16,19 +16,17 @@ define([
         },
 
         initialize: function () {
-            Backbone.on('itemSelected', (model) => {
+            Backbone.Radio.channel('userCollection').on('userCollection:itemSelected', (model) => {
                 this.model = model;
             });
         },
 
         clickedRight: function () {
-            Backbone.trigger('collectionModification', this.model);
-            this.model = undefined;
+            Backbone.Radio.trigger('userCollection', 'userCollection:change', this.model);
         },
 
         clickedLeft: function () {
-            Backbone.trigger('collectionModification', this.model);
-            this.model = undefined;
+            Backbone.Radio.trigger('userCollection', 'userCollection:change', this.model);
         }
     })
 });
