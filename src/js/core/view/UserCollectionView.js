@@ -12,21 +12,6 @@ define([
             'select:item': 'itemSelected'
         },
 
-        initialize: function () {
-            Backbone.Radio.channel('userCollection').on('userCollection:change', (model) => {
-                this.modifyCollection(model);
-            });
-        },
-
-        modifyCollection: function (model) {
-            if (this.collection.contains(model)) {
-                this.collection.remove(model);
-            } else {
-                this.collection.add(model);
-            }
-            Backbone.Radio.trigger('userCollection', 'userCollection:itemSelected', undefined);
-        },
-
         itemSelected: function (childView) {
             this.children.each((_childView) => {
                 if (_childView === childView) {

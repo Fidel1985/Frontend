@@ -11,9 +11,10 @@ define(
         'js/core/model/UserModel',
         'js/core/collection/UserCollection',
         'js/core/view/UserCollectionView',
-        'js/core/view/DataExchangeView'
+        'js/core/view/DataExchangeView',
+        'js/core/model/DataExchangeModel'
     ], function (Marionette, AppLayoutView, HeaderView, FooterView, CoreView, CheckBoxView, DashboardView, global,
-                 UserModel, UserCollection, UserCollectionView, DataExchangeView) {
+                 UserModel, UserCollection, UserCollectionView, DataExchangeView, DataExchangeModel) {
         return Marionette.MnObject.extend({
             initialize : function(options) {
                 this.app = options.app;
@@ -37,8 +38,9 @@ define(
                 let usersView = new UserCollectionView({collection : userCollection});
                 let usersView2 = new UserCollectionView({collection : userCollection2});
                 this.layout.showChildView('mainRegion', usersView);
-                this.layout.showChildView('dataExchangeRegion', new DataExchangeView());
                 this.layout.showChildView('secondaryRegion', usersView2);
+                let exchangeModel = new DataExchangeModel({leftCollection: userCollection, rightCollection: userCollection2});
+                this.layout.showChildView('dataExchangeRegion', new DataExchangeView({model : exchangeModel}));
             },
 
             dashboard: function () {
