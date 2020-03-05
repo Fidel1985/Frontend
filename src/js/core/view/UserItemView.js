@@ -1,8 +1,7 @@
 define([
     'text!js/core/template/UserItemTemplate.html',
-    'backbone.marionette',
-    'js/core/model/UserModel'
-], function (template, Marionette, UserModel) {
+    'backbone.marionette'
+], function (template, Marionette) {
     return Marionette.View.extend({
         template: _.template(template),
 
@@ -12,14 +11,6 @@ define([
 
         triggers: {
             'click @ui.userItem': 'select:item'
-        },
-
-        // events: {
-        //     "click @ui.userItem" : "clicked"
-        // },
-        //
-        // clicked: function () {
-        //     console.log(this.getUI('userItem').attr('data-id'));
-        // },
+        }
     })
 });

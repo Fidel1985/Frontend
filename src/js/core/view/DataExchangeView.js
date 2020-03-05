@@ -8,11 +8,15 @@ define([
         ui: {
             'buttonRight': '#right',
             'buttonLeft': '#left',
+            'buttonAllRight': '#all-right',
+            'buttonAllLeft': '#all-left',
         },
 
         events: {
             "click @ui.buttonRight" : "clickedRight",
-            "click @ui.buttonLeft" : "clickedLeft"
+            "click @ui.buttonLeft" : "clickedLeft",
+            "click @ui.buttonAllRight" : "clickedAllRight",
+            "click @ui.buttonAllLeft" : "clickedAllLeft"
         },
 
         initialize: function () {
@@ -36,6 +40,16 @@ define([
                 this.model.get(col2).add(element);
                 this.model.set('selectedItem', undefined);
             }
-        }
+        },
+
+        clickedAllRight: function () {
+            this.model.get('rightCollection').add(this.model.get('leftCollection').models);
+            this.model.get('leftCollection').reset();
+        },
+
+        clickedAllLeft: function () {
+            this.model.get('leftCollection').add(this.model.get('rightCollection').models);
+            this.model.get('rightCollection').reset();
+        },
     })
 });
