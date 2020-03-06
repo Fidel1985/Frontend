@@ -1,8 +1,7 @@
 define([
-    'text!js/core/template/UserCollectionTemplate.html',
     'backbone.marionette',
-    'js/core/view/UserItemView'
-], function (template, Marionette, UserItemView) {
+    'js/exchange/view/UserItemView'
+], function (Marionette, UserItemView) {
     return Marionette.CollectionView.extend({
         childView: UserItemView,
 

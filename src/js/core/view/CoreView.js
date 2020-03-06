@@ -71,7 +71,7 @@ define(
                 if (isCredentialsValid(this.model)) {
                     global.setCurrentUser(this.model);
                     Backbone.trigger('userLogged');
-                    Backbone.history.navigate('/dashboard', true);
+                    Backbone.history.navigate('/exchange', true);
                 } else {
                     alert('invalid credentials');
                 }

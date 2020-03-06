@@ -7,6 +7,7 @@ define(
                 '': 'resolveMainPage',
                 'main' : 'resolveMainPage',
                 'dashboard': 'dashboard',
+                'exchange': 'exchange'
             }
         })
     });

@@ -1,5 +1,5 @@
 define([
-    'text!js/core/template/DataExchangeTemplate.html',
+    'text!js/exchange/template/DataExchangeTemplate.html',
     'backbone.marionette',
 ], function (template, Marionette) {
     return Marionette.View.extend({
