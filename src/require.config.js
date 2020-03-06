@@ -9,7 +9,7 @@ requirejs.config({
         'backbone.approuter': 'lib/marionette.approuter',
         'backbone.validation': 'lib/backbone-validation',
         'model.binder': 'https://cdnjs.cloudflare.com/ajax/libs/backbone.modelbinder/1.1.0/Backbone.ModelBinder',
-        //'bootstrap' : 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min',
+        'bootstrap' : 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min',
         'timepicker' : 'https://unpkg.com/gijgo@1.9.13/js/gijgo.min',
         'text': 'lib/text'
     },

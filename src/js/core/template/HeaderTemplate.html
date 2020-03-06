@@ -17,14 +17,20 @@
         </ul>
 
         <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item">
+            <li  id="sign-up" class="nav-item">
                 <a class="nav-link" href="#"><span class="fas fa-user"></span> Sign Up</a>
             </li>
-            <li class="nav-item">
+            <li id="login" class="nav-item">
                 <a class="nav-link" href="#"><span class="fas fa-sign-in-alt"></span> Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" name="username"><span class="fas fa-sign-in-alt"></span></a>
+            <li id="profile" class="btn-group invisible">
+                <input type="button" name="username" class="btn btn-dark"></input>
+                <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div id="logout" class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
             </li>
         </ul>
     </div>
