@@ -10,8 +10,6 @@ define(
                 headerRegion: '[data-header-region]',
                 notificationRegion: '[data-notification-region]',
                 mainRegion: '[data-main-region]',
-                dataExchangeRegion: '[data-exchange-region]',
-                secondaryRegion: '[data-secondary-region]',
                 footerRegion: '[data-footer-region]'
             }
         });

@@ -73,7 +73,7 @@ define(
                     Backbone.trigger('userLogged');
                     Backbone.history.navigate('/exchange', true);
                 } else {
-                    alert('invalid credentials');
+                    Backbone.trigger('invalidCredentials');
                 }
             }
         });

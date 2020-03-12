@@ -24,9 +24,9 @@ define(
                 this.model = global.getCurrentUser();
                 Backbone.on('userLogged', () => {
                     this.model.set(global.getCurrentUser().toJSON());
-                    this.$('#sign-up').addClass('invisible');
-                    this.$('#login').addClass('invisible');
-                    this.$('#profile').removeClass('invisible');
+                    this.$('#sign-up').addClass('d-none');
+                    this.$('#login').addClass('d-none');
+                    this.$('#profile').removeClass('d-none');
                 });
             },
 
@@ -41,9 +41,9 @@ define(
             logout: function () {
                 this.model = new UserModel();
                 global.setCurrentUser(this.model);
-                this.$('#sign-up').removeClass('invisible');
-                this.$('#login').removeClass('invisible');
-                this.$('#profile').addClass('invisible');
+                this.$('#sign-up').removeClass('d-none');
+                this.$('#login').removeClass('d-none');
+                this.$('#profile').addClass('d-none');
             }
         });
     });

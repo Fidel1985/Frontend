@@ -9,8 +9,9 @@ define(
         'js/dashboard/view/DashboardView',
         'js/global',
         'js/exchange/view/CollectionLayoutView',
+        'js/core/view/NotificationView',
     ], function (Marionette, AppLayoutView, HeaderView, FooterView, CoreView, CheckBoxView, DashboardView, global,
-                 CollectionLayoutView) {
+                 CollectionLayoutView, NotificationView) {
         return Marionette.MnObject.extend({
             initialize : function(options) {
                 this.app = options.app;
@@ -18,6 +19,7 @@ define(
                 this.layout.render();
                 this.layout.showChildView('headerRegion', new HeaderView());
                 this.layout.showChildView('footerRegion', new FooterView());
+                this.layout.showChildView('notificationRegion', new NotificationView());
             },
 
             resolveMainPage: function () {
